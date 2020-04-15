@@ -8,6 +8,6 @@ routes.post('/users', UserController.store);
 routes.get('/users/:nome', UserController.nomeById);
 routes.delete('/users/:id', UserController.destroy);
 routes.post('/auth/login', UserController.auth);
-routes.get('/logado', UserController.logado);
+routes.get('/logado', protect, UserController.logado);
 
 module.exports = routes;

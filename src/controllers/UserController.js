@@ -39,9 +39,9 @@ module.exports = {
     if (user.password === req.body.password) {
       //logado
 
-      // gera o token o objeto user
+      // gera o token
       const token = jwt.sign({user}, TOKEN_APP_KEY);
-      //retorna o token pro usuário
+      //retorna o token pro usuário (aqui o usuário está com o token contido no header)
       return res.status(200).send({token});
     } else {
       //se o user digitou a senha errada, cai nessa condição
