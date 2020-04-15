@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
       req.authUser = decoded.user;
       next();
     } else {
-      throw new Error('invalid token');
+      throw new Error('este token não é valido');
     }
   } catch (error) {
     console.log(error);

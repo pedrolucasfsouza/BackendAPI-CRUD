@@ -20,27 +20,32 @@ module.exports = {
   },
 
   async logado(req, res) {
-    if (req.authUser) {
-      res.send('funcinou, ' + req.authUser.userName);
-    } else {
-      res.status(400).send('infelizmente você não está logado ainda');
-    }
+    res.send('logado');
   },
+
   async index(req, res) {
     const users = await User.find();
-
     return res.json(users);
   },
   async auth(req, res) {
+    //procura no BD pelo e-mail fornnecido pelo usuário
     const user = await User.findOne({email: req.body.email});
-    console.log(user, req.body);
+
+    //se o usuário NÃO existe no BD, retorna 'usuário n existe'
+    if (!user) {
+      return res.status(404).send('usuario não existe');
+    }
+    //se o password passado pelo usuário é = ao password BD
     if (user.password === req.body.password) {
       //logado
+
+      // gera o token o objeto user
       const token = jwt.sign({user}, TOKEN_APP_KEY);
-      res.status(200).send({token});
+      //retorna o token pro usuário
+      return res.status(200).send({token});
     } else {
-      //usuário senha inválida
-      res.status(400).send('Inválido');
+      //se o user digitou a senha errada, cai nessa condição
+      return res.status(400).send('Senha digitada é inválida');
     }
   },
 };
