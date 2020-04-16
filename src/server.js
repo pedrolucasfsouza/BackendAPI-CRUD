@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
-const authMiddleare = require('./middlewares/auth.middlware');
+const authMiddleware = require('./middlewares/auth.middlware');
 
 // Iniciando o App
 const app = express();
 app.use(express.json());
 
-app.use(authMiddleare);
+//requisita que toda requisição passe por esse Middlware.
+app.use(authMiddleware);
 
 //iniciando o DB
 mongoose.connect('mongodb://localhost:27017/nodeapi', {

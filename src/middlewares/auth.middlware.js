@@ -6,14 +6,15 @@ module.exports = (req, res, next) => {
   const token = req.header('Authorization');
   // se o token fornecido pelo usuário for indefinido:
   if (token === undefined) {
-    //o usuário caira no else no fim deste escopo.
+    //o usuário será enviado para o próximo middlware.
     next();
     return;
   }
   try {
     //se o usuário possuir token, iremos decodifica-lo abaixo
     const decoded = jwt.decode(token, TOKEN_APP_KEY);
-    console.log(decoded);
+
+    //o decoded retornará um objeto com o a propriedade "user". logo será decoded.user.
     if (decoded.user !== undefined) {
       //token valido
       req.authUser = decoded.user;

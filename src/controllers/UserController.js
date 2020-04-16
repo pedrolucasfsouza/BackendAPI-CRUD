@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const TOKEN_APP_KEY = process.env.npm_package_config_APP_TOKEN_KEY;
 
 module.exports = {
-  async store(req, res) {
+  async register(req, res) {
     const user = await User.create(req.body);
 
     return res.json(user);
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   async logado(req, res) {
-    res.send('logado');
+    res.send('você está na área restrista');
   },
 
   async index(req, res) {
