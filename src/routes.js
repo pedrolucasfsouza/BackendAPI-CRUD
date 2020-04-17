@@ -6,7 +6,7 @@ const UserController = require('./controllers/UserController');
 routes.post('/users/register', UserController.register);
 routes.post('/auth/login', UserController.auth);
 routes.get('/logado', protect, UserController.logado);
-routes.get('/users', UserController.index);
+routes.get('/users', protect, UserController.index);
 
 module.exports = routes;
 

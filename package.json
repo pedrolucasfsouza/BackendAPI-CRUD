@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.js"
   },
-  "config":{
-    "APP_TOKEN_KEY":"13141BB648F6719E1CEA7C5FA2AB8"
+  "config": {
+    "APP_TOKEN_KEY": "13141BB648F6719E1CEA7C5FA2AB8"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "require-dir": "^1.2.0"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "nodemon": "^2.0.3"
   }
 }
