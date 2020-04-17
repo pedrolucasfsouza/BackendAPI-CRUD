@@ -42,10 +42,10 @@ module.exports = {
       // gera o token
       const token = jwt.sign({user}, TOKEN_APP_KEY);
       //retorna o token pro usuário (aqui o usuário está com o token contido no header)
-      return res.status(200).send({token});
+      return res.status(200).send({auth: true, token: token});
     } else {
       //se o user digitou a senha errada, cai nessa condição
-      return res.status(400).send('Senha digitada é inválida');
+      return res.status(500).send('Senha digitada é inválida');
     }
   },
 };
