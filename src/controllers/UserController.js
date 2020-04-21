@@ -5,10 +5,16 @@ const TOKEN_APP_KEY = process.env.npm_package_config_APP_TOKEN_KEY;
 
 module.exports = {
   async register(req, res) {
-    const user = await User.create(req.body);
-
-    return res.json(user);
+    const email = await User.findOne({email: req.body.email});
+    //se o e-mail já existe no banco de dados, eu envio um erro pro frontend
+    if (email) {
+      return res.status(500).send({error: 'e-mail já cadastrado'});
+    } else {
+      const user = await User.create(req.body);
+      return res.json(user);
+    }
   },
+
   async nomeById(req, res) {
     const nome = await User.find({userName: req.params.nome});
 
